@@ -2,3 +2,5 @@ Throw
 Clean
 Wash
 Drive
+Clean
+Shower

@@ -7,20 +7,20 @@ while True:
         case "add":
             todo = input("Enter a todo: ").capitalize() + "\n"
 
-            file = open("todos.txt", "r")
+            file = open("files/todos.txt", "r")
             todos = file.readlines()
             file.close()
 
             todos.append(todo)
 
-            file = open("todos.txt", "w")
+            file = open("files/todos.txt", "w")
             file.writelines(todos)
             file.close()
         case "show" | "display":
-            file = open("todos.txt", "r")
+            file = open("files/todos.txt", "r")
             todos = file.readlines()
             file.close()
-            
+
             for index, item in enumerate(todos):
                 print(f"{index + 1}-{item}")
         case "edit":
