@@ -1,6 +1,4 @@
+Clean
 Throw
-Clean
-Wash
-Drive
-Clean
-Shower
+Take out
+Sort

@@ -22,7 +22,8 @@ while True:
             file.close()
 
             for index, item in enumerate(todos):
-                print(f"{index + 1}-{item}")
+                items = (f"{index + 1}-{item}").strip("\n")
+                print(items)
         case "edit":
             number = int(input("Number of the todo to edit: "))
             number = number - 1
