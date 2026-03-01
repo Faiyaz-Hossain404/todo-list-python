@@ -1,5 +1,4 @@
 Clean
 Throw
 Take out
-Sort
 fix
