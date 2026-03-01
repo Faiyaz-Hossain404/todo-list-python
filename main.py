@@ -33,7 +33,7 @@ while True:
             with open("files/todos.txt", 'r') as file:
                 todos = file.readlines()
 
-            new_todo = input("Enter new todo: ")
+            new_todo = input("Enter new todo: ").capitalize()
             todos[number] = new_todo
 
             with open("files/todos.txt", 'w') as file:
@@ -44,10 +44,17 @@ while True:
             with open("files/todos.txt", 'r') as file:
                 todos = file.readlines()
             
-            todos.pop(number - 1)
+            index = number - 1
+
+            removed_removed = todos[index].strip()
+
+            todos.pop(index)
 
             with open("files/todos.txt", 'w') as file:
-                file.writelines(todos)            
+                file.writelines(todos)       
+
+            message = f"Todo {removed_removed} was removed from the list"
+            print(message)  
         case "exit":
             break
 
