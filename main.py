@@ -60,7 +60,7 @@ while True:
             print(message)
         
         except ValueError:
-            print("Your comman is not valid. Enter a number.")
+            print("Your command is not valid. Enter a number.")
             continue
 
         except IndexError:
