@@ -3,8 +3,8 @@ while True:
     user_action = input("Type add, show, edit, complete or exit: ")
     user_action = user_action.strip()
 
-    if "add" in user_action:
-        todo = user_action[4:] + "\n"
+    if user_action.startswith("add"):
+        todo = user_action[4:].capitalize() + "\n"
 
         with open("files/todos.txt", 'r') as file:
             todos = file.readlines()
@@ -14,50 +14,63 @@ while True:
         with open("files/todos.txt", 'w') as file:
             file.writelines(todos)
 
-    elif "show" in user_action:
-        file = open("files/todos.txt", "r")
-        todos = file.readlines()
-        file.close()
-
+    elif user_action.startswith("show"):
         with open("files/todos.txt", "r") as file:
             todos = file.readlines()
 
         for index, item in enumerate(todos):
             items = (f"{index + 1}-{item}").strip("\n")
             print(items)
-    elif "edit" in user_action:
-        number = int(user_action[5:])
-        number = number - 1
- 
-        with open("files/todos.txt", 'r') as file:
-            todos = file.readlines()
 
-        new_todo = input("Enter new todo: ").capitalize()
-        todos[number] = new_todo
+    elif user_action.startswith("edit"):
+        try:
+            number = int(user_action[5:])
+            number = number - 1
+    
+            with open("files/todos.txt", 'r') as file:
+                todos = file.readlines()
 
-        with open("files/todos.txt", 'w') as file:
-            file.writelines(todos)
-    elif "complete" in user_action:
-        number = int(user_action[9:])
+            new_todo = input("Enter new todo: ").capitalize() + "\n"
+            todos[number] = new_todo
 
-        with open("files/todos.txt", 'r') as file:
-            todos = file.readlines()
+            with open("files/todos.txt", 'w') as file:
+                file.writelines(todos)
+        except ValueError:
+            print("Your command is not valid. Enter a number.")
+
+            continue
+
+    elif user_action.startswith("complete"):
+        try:
+            number = int(user_action[9:])
+
+            with open("files/todos.txt", 'r') as file:
+                todos = file.readlines()
+            
+            index = number - 1
+
+            removed_todo = todos[index].strip()
+
+            todos.pop(index)
+
+            with open("files/todos.txt", 'w') as file:
+                file.writelines(todos)       
+
+            message = f"Todo {removed_todo} was removed from the list"
+            print(message)
         
-        index = number - 1
+        except ValueError:
+            print("Your comman is not valid. Enter a number.")
+            continue
 
-        removed_removed = todos[index].strip()
+        except IndexError:
+            print("Todo number doesn't exist.")
+            continue
 
-        todos.pop(index)
-
-        with open("files/todos.txt", 'w') as file:
-            file.writelines(todos)       
-
-        message = f"Todo {removed_removed} was removed from the list"
-        print(message)  
-    elif "exit" in user_action:
+    elif user_action.startswith("exit"):
         break
     
     else:
         print("Command not valid")
 
-print("Bye!");
+print("Bye!")
