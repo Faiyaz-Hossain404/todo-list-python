@@ -4,3 +4,4 @@ wash
 clean the bag
 Fix the carA new player
 Take the trash
+Make tea

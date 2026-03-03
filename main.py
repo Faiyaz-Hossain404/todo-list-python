@@ -1,3 +1,8 @@
+def get_todos():
+    with open("files/todos.txt", "r") as file:
+        todos = file.readlines()
+        return todos
+
 
 while True:
     user_action = input("Type add, show, edit, complete or exit: ")
@@ -6,8 +11,7 @@ while True:
     if user_action.startswith("add"):
         todo = user_action[4:].capitalize() + "\n"
 
-        with open("files/todos.txt", 'r') as file:
-            todos = file.readlines()
+        todos = get_todos()
 
         todos.append(todo)
 
@@ -15,8 +19,7 @@ while True:
             file.writelines(todos)
 
     elif user_action.startswith("show"):
-        with open("files/todos.txt", "r") as file:
-            todos = file.readlines()
+        todos = get_todos()
 
         for index, item in enumerate(todos):
             items = (f"{index + 1}-{item}").strip("\n")
@@ -27,8 +30,7 @@ while True:
             number = int(user_action[5:])
             number = number - 1
     
-            with open("files/todos.txt", 'r') as file:
-                todos = file.readlines()
+            todos = get_todos()
 
             new_todo = input("Enter new todo: ").capitalize() + "\n"
             todos[number] = new_todo
@@ -44,8 +46,7 @@ while True:
         try:
             number = int(user_action[9:])
 
-            with open("files/todos.txt", 'r') as file:
-                todos = file.readlines()
+            todos = get_todos()
             
             index = number - 1
 
