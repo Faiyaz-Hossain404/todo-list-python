@@ -23,15 +23,16 @@ edit_button = sg.Button("Edit")
 
 while True:
     event, values = window.read()
-    print(event)
-    print(values)
-    print(values['todos'][0])
+    # print(event)
+    # print(values)
+    # print(values['todos'][0])
     match event:
         case "Add":
             todos = functions.get_todos()
             new_todo = values['todo'] + "\n"
             todos.append(new_todo)
             functions.write_todos(todos)
+            window['todos'].update(values=todos)
         
         case "Edit":
             todo_to_edit = values['todos'][0]
